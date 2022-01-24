@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    hostname: api
+    volumes:
+      - "./:/app"
+      - "./:/sample_model"
+    ports:
+      - "4040:4040"
+    command: bash -c 
+                  "
+                  uvicorn --reload 
+                  --host 0.0.0.0
+                  --port 4040
+                  --log-level info 
+                  --lifespan on  
+                  --forwarded-allow-ips='*' 
+                  'app.main:app'"

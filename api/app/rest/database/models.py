@@ -1,0 +1,100 @@
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, Date
+from sqlalchemy.orm import relationship
+
+from app.rest.database.dbhandler import Base
+
+class Heart(Base):
+    __tablename__ = "heart"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    age = Column(Integer)
+    sex = Column(Integer)
+    cp = Column(Integer)
+    trestbps = Column(Integer)
+    chol = Column(Integer)
+    fbs = Column(Integer)
+    restecg = Column(Integer)
+    thalach = Column(Integer)
+    exang = Column(Integer)
+    oldpeak = Column(Float)
+    slope = Column(Integer)
+    ca = Column(Integer)
+    thal = Column(Integer)
+    target = Column(Integer)
+
+class Model(Base):
+    __tablename__ = "models"
+    
+    estimator_id = Column(String, primary_key=True, index=True)
+    name = Column(String)
+    params = Column(String)
+    f1_score = Column(Float)
+    accuracy = Column(Float)
+    d = Column(Date)
+    raw_hash = Column(String)
+    processed_hash = Column(String)
+    pipeline_hash = Column(String)
+
+class Prediction(Base):
+    __tablename__ = "predictions"
+
+    pred_id = Column(Integer, primary_key=True, index=True)
+    Alley= Column(String)
+    MasVnrType= Column(String)
+    MasVnrType=Column(String)
+    BsmtQual=Column(String)
+    BsmtCond=Column(String)
+    BsmtExposure=Column(String)
+    BsmtFinType1=Column(String)
+    BsmtFinType2=Column(String)
+    FireplaceQu=Column(String)
+    GarageType=Column(String)
+    GarageFinish=Column(String)
+    GarageQual=Column(String)
+    GarageCond=Column(String)
+    PoolQC=Column(String)
+    Fence=Column(String)
+    MiscFeature=Column(String)
+
+    LotFrontage = Column(Float)
+    LotArea = Column(Float)
+    OverallQual = Column(Integer)
+    OverallCond = Column(Integer)
+    YearBuilt = Column(Integer)
+    YearRemodAdd = Column(Integer)
+    MasVnrArea = Column(Float)
+    BsmtFinSF1 = Column(Float)
+    BsmtFinSF2 = Column(Float)
+    BsmtUnfSF = Column(Float)
+    TotalBsmtSF = Column(Float)
+    stFlrSF1 = Column(Integer)
+    ndFlrSF2 = Column(Integer)
+    LowQualFinSF = Column(Boolean)
+    GrLivArea = Column(Integer)
+    BsmtFullBath = Column(Float)
+    BsmtHalfBath = Column(Float)
+    FullBath = Column(Integer)
+    HalfBath = Column(Integer)
+    BedroomAbvGr = Column(Integer)
+    KitchenAbvGr =  Column(Integer)
+    TotRmsAbvGrd = Column(Float)
+    Fireplaces = Column(Boolean)
+    GarageYrBlt = Column(Float)
+    GarageCars = Column(Float)
+    GarageArea = Column(Float)
+    WoodDeckSF =  Column(Integer)
+    OpenPorchSF =  Column(Integer)
+    EnclosedPorch =  Column(Integer)
+    SsnPorch3 =  Column(Integer)
+    ScreenPorch = Column(Boolean)
+    PoolArea = Column(Integer)
+    MiscVal =Column(Integer)
+    MoSold = Column(Integer)
+    YrSold = Column(Integer)
+    
+    prediction = Column(Boolean)
+    prediction_proba = Column(Float)
+    explanation = Column(String,default="")
+    # model_id = Column(String, ForeignKey("models.estimator_id"))
+
+    # model = relationship("Model", back_populates="predictions")
