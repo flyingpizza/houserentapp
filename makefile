@@ -28,4 +28,4 @@ login-timescale:
 login-api:
 	docker-compose -f docker-compose.yml exec api /bin/bash
 db-shell:
-	docker-compose -f docker-compose.yml exec timescale psql -Upostgres
+	docker-compose -f docker-compose.yml exec timescale psql -Upostgres 
