@@ -1,7 +1,15 @@
-THIS_FILE := $(lastword $(MAKEFILE_LIST))
-.PHONY: help build up start down destroy stop restart logs logs-api ps login-timescale login-api db-shell
-help:
-	make -pRrq  -f $(THIS_FILE) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+# THIS_FILE := $(lastword $(MAKEFILE_LIST))
+# .PHONY: help build up start down destroy stop restart logs logs-api ps login-timescale login-api db-shell
+# help:
+# 	make -pRrq  -f $(THIS_FILE) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+Makefile
+# Add the following 'help' target to your Makefile
+# And add help text after each target name starting with '\#\#'
+ 
+help:           ## Show this help.
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
 build:
 	docker-compose -f docker-compose.yml build $(c)
 up:
@@ -17,6 +25,8 @@ stop:
 restart:
 	docker-compose -f docker-compose.yml stop $(c)
 	docker-compose -f docker-compose.yml up -d $(c)
+purge:
+	docker container prune
 logs:
 	docker-compose -f docker-compose.yml logs --tail=100 -f $(c)
 logs-api:

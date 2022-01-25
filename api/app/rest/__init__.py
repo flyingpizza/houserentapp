@@ -10,8 +10,8 @@ tags_metadata = [
 
 # Spin up the app
 app = FastAPI(
-    title="Car Insurance Cold Calling Sales Prediction API",
-    description="This is an API to provide predictions from the CarInsurancePredictionModel[TM]",
+    title="House pricing model",
+    description="This is an API to provide predictions for house pricing models[TM]",
     version="0.0.1",
     openapi_tags=tags_metadata)
 
